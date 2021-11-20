@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Theme -->
+    <color name="primary">#455A64</color>
+    <color name="primary_light">#718792</color>
+    <color name="primary_dark">#1C313A</color>
+    <color name="primary_text">#FFFFFF</color>
+    <color name="secondary">#90CAF9</color>
+    <color name="secondary_light">#C3FDFF</color>
+    <color name="secondary_dark">#5D99C6</color>
+    <color name="secondary_text">#000000</color>
+    <color name="negative">#EF5350</color>
+    <color name="positive">#00E676</color>
+
+    <!--  Generic colors  -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+</resources>
