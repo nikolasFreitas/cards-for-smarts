@@ -7,36 +7,39 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.cardsforsmarts.R;
 import com.example.cardsforsmarts.databinding.FragmentHomeBinding;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
+    private NavController navController;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         String[] menuOptions = new String[]{"Decks", "Statistics"};
-        ListView listView = binding.getRoot().findViewById(R.id.listView_menu);
         View root = binding.getRoot();
 
-        ArrayAdapter<String> menuList = new ArrayAdapter<>(root.getContext(), android.R.layout.simple_list_item_1, menuOptions);
+        ListView listView = root.findViewById(R.id.listView_menu);
+        navController = NavHostFragment.findNavController(this);
 
+        ArrayAdapter<String> menuList = new ArrayAdapter<>(root.getContext(), android.R.layout.simple_list_item_1, menuOptions);
         listView.setAdapter(menuList);
+
+        listView.setOnItemClickListener((AdapterView<?> parent, View view, int position, long id) -> {
+            String menuItem = (String) parent.getItemAtPosition(position);
+            if (menuItem.equals("Decks")) {
+                navController.navigate(R.id.action_nav_home_to_deck);
+            }
+        });
 
         return root;
     }
