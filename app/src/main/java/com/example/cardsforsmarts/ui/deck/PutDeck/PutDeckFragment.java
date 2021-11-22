@@ -1,29 +1,21 @@
-package com.example.cardsforsmarts.ui.deck;
+package com.example.cardsforsmarts.ui.deck.PutDeck;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.Toast;
 
 import com.example.cardsforsmarts.R;
-import com.example.cardsforsmarts.databinding.FragmentDeckBinding;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link DeckFragment#newInstance} factory method to
+ * Use the {@link PutDeckFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class DeckFragment extends Fragment {
-    private FragmentDeckBinding binding;
+public class PutDeckFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,7 +26,7 @@ public class DeckFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public DeckFragment() {
+    public PutDeckFragment() {
         // Required empty public constructor
     }
 
@@ -44,11 +36,11 @@ public class DeckFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Deck.
+     * @return A new instance of fragment AddDeckFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static DeckFragment newInstance(String param1, String param2) {
-        DeckFragment fragment = new DeckFragment();
+    public static PutDeckFragment newInstance(String param1, String param2) {
+        PutDeckFragment fragment = new PutDeckFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -66,20 +58,9 @@ public class DeckFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentDeckBinding.inflate(inflater, container, false);
-        binding.getRoot().findViewById(R.id.textView_empty_message).setVisibility(View.VISIBLE);
-        FloatingActionButton fab = binding.getRoot().findViewById(R.id.fab_add_deck);
-        attachFabListener(fab);
         // Inflate the layout for this fragment
-        return binding.getRoot();
-    }
-
-    private void attachFabListener(FloatingActionButton button) {
-        button.setOnClickListener(view -> {
-            NavController navController = Navigation.findNavController(view);
-            navController.navigate(R.id.action_nav_deck_to_nav_add_deck);
-        });
+        return inflater.inflate(R.layout.fragment_put_deck, container, false);
     }
 }
