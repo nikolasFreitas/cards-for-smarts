@@ -15,4 +15,9 @@
     <string name="menu_deck">Decks</string>
     <string name="menu_add_deck">Adicionar deck</string>
     <string name="warning_empty_deck">Ainda não existem decks no seu acervo</string>
+    <string name="screen_title_add_deck">Criação de baralho</string>
+    <string name="label_create">Criar</string>
+    <string name="hint_deck_name">Nome do baralho</string>
+    <string name="toolBar_add_deck">Adicionar baralho</string>
+    <string name="toolBar_edit_deck">Editar baralho</string>
 </resources>

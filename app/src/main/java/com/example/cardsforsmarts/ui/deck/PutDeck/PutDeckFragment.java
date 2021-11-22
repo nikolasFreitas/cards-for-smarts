@@ -2,13 +2,20 @@ package com.example.cardsforsmarts.ui.deck.PutDeck;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.cardsforsmarts.R;
+import com.example.cardsforsmarts.databinding.FragmentPutDeckBinding;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -58,9 +65,47 @@ public class PutDeckFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        FragmentPutDeckBinding binding = FragmentPutDeckBinding.inflate(inflater, container, false);
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_put_deck, container, false);
+        configToolbarTitle();
+        binding
+                .getRoot()
+                .findViewById(R.id.button_submit_deck)
+                .setOnClickListener(submitDeck);
+
+        return binding.getRoot();
     }
+
+    private void configToolbarTitle() {
+        String titleName;
+        if (getArguments() == null) {
+            titleName = getString(R.string.toolBar_add_deck);
+        } else {
+            titleName = getString(R.string.toolBar_edit_deck);
+        }
+
+        ((AppCompatActivity) requireActivity()).getSupportActionBar().setTitle(titleName);
+    }
+
+    private boolean isFormValid() {
+        EditText editDeckName = ((TextInputLayout) getView().findViewById(R.id.textInputLayout_deck_name)).getEditText();
+
+        if (editDeckName != null && editDeckName.getText().toString().isEmpty()) {
+            editDeckName.setError("Nome do deck não pode estar vazio");
+            return false;
+        }
+
+        return true;
+    }
+
+    private final View.OnClickListener submitDeck = (View e) -> {
+        if (isFormValid()) {
+            String toastMessage = "deck salvo com sucesso! (AINDA A SER IMPLEMENTADO)";
+
+            Toast.makeText(getContext(), toastMessage, Toast.LENGTH_SHORT).show();
+        }
+    };
+
 }
