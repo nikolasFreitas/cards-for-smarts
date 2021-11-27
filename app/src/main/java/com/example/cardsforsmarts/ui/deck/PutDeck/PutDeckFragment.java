@@ -71,8 +71,7 @@ public class PutDeckFragment extends Fragment {
         // Inflate the layout for this fragment
         configToolbarTitle();
         binding
-                .getRoot()
-                .findViewById(R.id.button_submit_deck)
+                .buttonSubmitDeck
                 .setOnClickListener(submitDeck);
 
         return binding.getRoot();

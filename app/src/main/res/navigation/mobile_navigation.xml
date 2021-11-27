@@ -26,6 +26,7 @@
         android:name="com.example.cardsforsmarts.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+
     <fragment
         android:id="@+id/nav_deck"
         android:name="com.example.cardsforsmarts.ui.deck.DeckFragment"

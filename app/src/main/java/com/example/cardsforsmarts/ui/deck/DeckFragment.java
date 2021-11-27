@@ -69,8 +69,8 @@ public class DeckFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentDeckBinding.inflate(inflater, container, false);
-        binding.getRoot().findViewById(R.id.textView_empty_message).setVisibility(View.VISIBLE);
-        FloatingActionButton fab = binding.getRoot().findViewById(R.id.fab_add_deck);
+        binding.textViewEmptyMessage.setVisibility(View.VISIBLE);
+        FloatingActionButton fab = binding.fabAddDeck;
         attachFabListener(fab);
         // Inflate the layout for this fragment
         return binding.getRoot();
