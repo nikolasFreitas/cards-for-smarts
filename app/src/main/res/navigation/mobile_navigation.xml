@@ -42,5 +42,10 @@
         android:name="com.example.cardsforsmarts.ui.deck.PutDeck.PutDeckFragment"
         android:label="@string/menu_add_deck"
         tools:layout="@layout/fragment_put_deck"
-        />
+        >
+        <argument
+            android:name="deckId"
+            app:argType="long"
+            android:defaultValue="-1L" />
+    </fragment>
 </navigation>

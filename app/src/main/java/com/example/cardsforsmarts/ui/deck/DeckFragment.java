@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
+import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
@@ -78,8 +79,10 @@ public class DeckFragment extends Fragment {
 
     private void attachFabListener(FloatingActionButton button) {
         button.setOnClickListener(view -> {
-            NavController navController = Navigation.findNavController(view);
-            navController.navigate(R.id.action_nav_deck_to_nav_add_deck);
+
+            DeckFragmentDirections.ActionNavDeckToNavAddDeck action = DeckFragmentDirections.actionNavDeckToNavAddDeck();
+            action.setDeckId(5);
+            Navigation.findNavController(view).navigate(action);
         });
     }
 }

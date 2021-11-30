@@ -20,4 +20,5 @@
     <string name="hint_deck_name">Nome do baralho</string>
     <string name="toolBar_add_deck">Adicionar baralho</string>
     <string name="toolBar_edit_deck">Editar baralho</string>
+    <string name="title_deck_of_wisdom">Deck\nof Wisdom</string>
 </resources>
