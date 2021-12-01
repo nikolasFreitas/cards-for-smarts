@@ -1,5 +1,8 @@
 package com.example.cardsforsmarts.ui.deck;
 
+import android.graphics.Paint;
+import android.text.SpannableString;
+import android.text.style.UnderlineSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,11 +11,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.cardsforsmarts.R;
 import com.example.cardsforsmarts.databinding.AdapterCardDeckBinding;
 
 public class DeckAdapter extends RecyclerView.Adapter<DeckAdapter.ViewHolder> {
-    private String[] deckList;
+    private final String[] deckList;
 
     public DeckAdapter(String[] localDataSet) {
         this.deckList = localDataSet;
@@ -28,7 +30,15 @@ public class DeckAdapter extends RecyclerView.Adapter<DeckAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.getTextView().setText(deckList[position]);
+        String deckName = deckList[position];
+        TextView textView = holder.getTextViewDeckName();
+
+        configDeckNameView(textView, deckName);
+    }
+
+    private void configDeckNameView(TextView textView, String deckName) {
+        textView.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
+        textView.setText(deckName);
     }
 
     @Override
@@ -38,17 +48,19 @@ public class DeckAdapter extends RecyclerView.Adapter<DeckAdapter.ViewHolder> {
 
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private final TextView textView;
+        private final TextView textViewDeckName;
 
         public ViewHolder(AdapterCardDeckBinding binding) {
             super(binding.getRoot());
 
-            textView = binding.textViewDeckName;
+            textViewDeckName = binding.textViewDeckName;
         }
 
-        public TextView getTextView() {
-            return textView;
+        public TextView getTextViewDeckName() {
+            return textViewDeckName;
         }
     }
+
+
 
 }

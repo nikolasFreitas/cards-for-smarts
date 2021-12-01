@@ -41,12 +41,20 @@ public class DeckFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentDeckBinding.inflate(inflater, container, false);
-        binding.textViewEmptyMessage.setVisibility(View.VISIBLE);
         FloatingActionButton fab = binding.fabAddDeck;
         attachFabListener(fab);
+        configWarningTextVisibility();
         initRecycleView();
         // Inflate the layout for this fragment
         return binding.getRoot();
+    }
+
+    private void configWarningTextVisibility() {
+        if (mDataset.length > 0) {
+            binding.textViewEmptyMessage.setVisibility(View.GONE);
+        } else {
+            binding.textViewEmptyMessage.setVisibility(View.VISIBLE);
+        }
     }
 
     private void initRecycleView() {

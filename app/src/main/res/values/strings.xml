@@ -21,4 +21,7 @@
     <string name="toolBar_add_deck">Adicionar baralho</string>
     <string name="toolBar_edit_deck">Editar baralho</string>
     <string name="title_deck_of_wisdom">Deck\nof Wisdom</string>
+    <string name="button_label_edit">editar</string>
+    <string name="button_label_remove">Remover</string>
+    <string name="button_label_start">começar</string>
 </resources>
