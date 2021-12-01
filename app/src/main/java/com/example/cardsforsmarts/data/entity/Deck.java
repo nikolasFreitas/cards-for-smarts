@@ -9,4 +9,8 @@ public class Deck {
     @PrimaryKey
     public int id;
 
+    public String name;
+    public Float lastScore;
+    public boolean touched = false;
+    public int totalCards = 0;
 }
