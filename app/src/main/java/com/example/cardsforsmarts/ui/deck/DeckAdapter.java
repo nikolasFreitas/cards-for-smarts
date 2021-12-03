@@ -11,14 +11,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.cardsforsmarts.data.entity.Deck;
 import com.example.cardsforsmarts.databinding.AdapterCardDeckBinding;
 
-public class DeckAdapter extends RecyclerView.Adapter<DeckAdapter.ViewHolder> {
-    private final String[] deckList;
+import java.util.ArrayList;
+import java.util.List;
 
-    public DeckAdapter(String[] localDataSet) {
-        this.deckList = localDataSet;
-    }
+public class DeckAdapter extends RecyclerView.Adapter<DeckAdapter.ViewHolder> {
+    private List<Deck> deckList = new ArrayList<>();
 
     @NonNull
     @Override
@@ -30,10 +30,10 @@ public class DeckAdapter extends RecyclerView.Adapter<DeckAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        String deckName = deckList[position];
+        Deck deck = deckList.get(position);
         TextView textView = holder.getTextViewDeckName();
 
-        configDeckNameView(textView, deckName);
+        configDeckNameView(textView, deck.name);
     }
 
     private void configDeckNameView(TextView textView, String deckName) {
@@ -43,9 +43,12 @@ public class DeckAdapter extends RecyclerView.Adapter<DeckAdapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return deckList.length;
+        return deckList.size();
     }
 
+    public void setDeck(List<Deck> deck) {
+        deckList = deck;
+    }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView textViewDeckName;
@@ -60,7 +63,4 @@ public class DeckAdapter extends RecyclerView.Adapter<DeckAdapter.ViewHolder> {
             return textViewDeckName;
         }
     }
-
-
-
 }

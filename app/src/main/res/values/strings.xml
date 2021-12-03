@@ -15,7 +15,7 @@
     <string name="menu_deck">Decks</string>
     <string name="menu_add_deck">Adicionar deck</string>
     <string name="warning_empty_deck">Ainda não existem decks no seu acervo</string>
-    <string name="screen_title_add_deck">Criação de baralho</string>
+    <string name="create_creative_deck">Seja criativo com o nome do baralho :D</string>
     <string name="label_create">Criar</string>
     <string name="hint_deck_name">Nome do baralho</string>
     <string name="toolBar_add_deck">Adicionar baralho</string>
@@ -24,4 +24,5 @@
     <string name="button_label_edit">editar</string>
     <string name="button_label_remove">Remover</string>
     <string name="button_label_start">começar</string>
+    <string name="reference_title">Referência</string>
 </resources>

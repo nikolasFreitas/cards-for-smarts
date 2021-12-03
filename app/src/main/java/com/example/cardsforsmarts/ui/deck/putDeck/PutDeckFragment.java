@@ -1,4 +1,4 @@
-package com.example.cardsforsmarts.ui.deck.PutDeck;
+package com.example.cardsforsmarts.ui.deck.putDeck;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,13 +10,19 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import com.example.cardsforsmarts.R;
+import com.example.cardsforsmarts.data.entity.Deck;
 import com.example.cardsforsmarts.databinding.FragmentPutDeckBinding;
+import com.example.cardsforsmarts.ui.deck.DeckViewModel;
 
 public class PutDeckFragment extends Fragment {
     private long deckId;
     private FragmentPutDeckBinding fragmentBinding;
+    private DeckViewModel deckViewModel;
 
     public PutDeckFragment() {
         // Required empty public constructor
@@ -27,6 +33,7 @@ public class PutDeckFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         fragmentBinding = FragmentPutDeckBinding.inflate(inflater, container, false);
+        deckViewModel = new ViewModelProvider(getActivity()).get(DeckViewModel.class);
 
         deckId = PutDeckFragmentArgs.fromBundle(getArguments()).getDeckId();
 
@@ -62,9 +69,9 @@ public class PutDeckFragment extends Fragment {
 
     private final View.OnClickListener submitDeck = (View e) -> {
         if (isFormValid()) {
-            String toastMessage = "deck salvo com sucesso! (AINDA A SER IMPLEMENTADO)";
-
-            Toast.makeText(getContext(), toastMessage, Toast.LENGTH_SHORT).show();
+            Deck deck = new Deck();
+            deck.name = fragmentBinding.textInputLayoutDeckName.getEditText().getText().toString();
+            deckViewModel.insert(deck);
         }
     };
 

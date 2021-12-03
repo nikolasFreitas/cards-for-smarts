@@ -34,12 +34,12 @@
         tools:layout="@layout/fragment_deck" >
         <action
             android:id="@+id/action_nav_deck_to_nav_add_deck"
-            app:destination="@id/nav_add_deck" />
+            app:destination="@id/nav_put_deck" />
     </fragment>
 
     <fragment
-        android:id="@+id/nav_add_deck"
-        android:name="com.example.cardsforsmarts.ui.deck.PutDeck.PutDeckFragment"
+        android:id="@+id/nav_put_deck"
+        android:name="com.example.cardsforsmarts.ui.deck.putDeck.PutDeckFragment"
         android:label="@string/menu_add_deck"
         tools:layout="@layout/fragment_put_deck"
         >
