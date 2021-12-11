@@ -1,6 +1,7 @@
 package com.example.cardsforsmarts.ui.deck;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ import java.util.List;
 public class DeckFragment extends Fragment {
     private FragmentDeckBinding binding;
     private DeckViewModel deckViewModel;
+    private int SPLASH_TIME_OUT = 1500;
 
     public DeckFragment() {
         // Required empty public constructor
@@ -31,26 +33,31 @@ public class DeckFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentDeckBinding.inflate(inflater, container, false);
         deckViewModel = new ViewModelProvider(getActivity()).get(DeckViewModel.class);
-        configWarningTextVisibility(deckViewModel.getAllDecks().getValue());
+        loadingHandler();
+        initRecycleView();
+
         FloatingActionButton fab = binding.fabAddDeck;
         attachFabListener(fab);
-        initRecycleView();
         // Inflate the layout for this fragment
         return binding.getRoot();
     }
 
     private void setDeckDataObservable(DeckAdapter deckAdapter) {
-        deckViewModel.getAllDecks().observe(getActivity(), decks -> {
-            deckAdapter.setDeck(decks);
-            configWarningTextVisibility(decks);
-            deckAdapter.notifyDataSetChanged();
-        });
+        deckViewModel.getAllDecks().observe(getActivity(), deckAdapter::setDeck);
     }
 
-    private void configWarningTextVisibility(List<Deck> decks) {
+    private void loadingHandler() {
+        new Handler().postDelayed(() -> {
+            binding.progressBarDeckLoading.setVisibility(View.GONE);
+            updateUiByDeckQuantity(deckViewModel.getAllDecks().getValue());
+        }, SPLASH_TIME_OUT);
+    }
+
+    private void updateUiByDeckQuantity(List<Deck> decks) {
         if (decks == null || decks.isEmpty()) {
             binding.textViewEmptyMessage.setVisibility(View.VISIBLE);
         } else {
+            binding.recyclerViewDeckList.setVisibility(View.VISIBLE);
             binding.textViewEmptyMessage.setVisibility(View.GONE);
         }
     }

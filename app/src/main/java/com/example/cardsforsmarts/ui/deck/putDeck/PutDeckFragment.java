@@ -18,6 +18,8 @@ import com.example.cardsforsmarts.R;
 import com.example.cardsforsmarts.data.entity.Deck;
 import com.example.cardsforsmarts.databinding.FragmentPutDeckBinding;
 import com.example.cardsforsmarts.ui.deck.DeckViewModel;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 
 public class PutDeckFragment extends Fragment {
     private long deckId;
@@ -72,7 +74,18 @@ public class PutDeckFragment extends Fragment {
             Deck deck = new Deck();
             deck.name = fragmentBinding.textInputLayoutDeckName.getEditText().getText().toString();
             deckViewModel.insert(deck);
+
+            Snackbar.make(fragmentBinding.getRoot(), prepareInsertedMessage(deck), BaseTransientBottomBar.LENGTH_SHORT).show();
+            Navigation.findNavController(e).popBackStack();
         }
     };
+
+    private String prepareInsertedMessage(Deck deck) {
+        return new StringBuilder("Deck").append(" \"")
+                .append(deck.name).append("\" ")
+                .append("edicionado com sucesso!")
+                .toString();
+
+    }
 
 }
