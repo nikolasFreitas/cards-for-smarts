@@ -46,8 +46,8 @@ public class DeckAdapter extends RecyclerView.Adapter<DeckAdapter.ViewHolder> {
         return deckList.size();
     }
 
-    public void setDeck(List<Deck> deck) {
-        deckList = deck;
+    public void setDeck(List<Deck> newDecks) {
+        deckList = newDecks;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

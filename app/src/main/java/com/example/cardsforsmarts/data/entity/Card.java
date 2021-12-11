@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey;
 
 @Entity
 public class Card {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     public long cardId;
     public long deckOwnerId;
     public CardAnswer cardAnswer;

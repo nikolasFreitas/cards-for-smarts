@@ -33,7 +33,7 @@ public class PutDeckFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         fragmentBinding = FragmentPutDeckBinding.inflate(inflater, container, false);
-        deckViewModel = new ViewModelProvider(getActivity()).get(DeckViewModel.class);
+        deckViewModel = new ViewModelProvider(requireActivity()).get(DeckViewModel.class);
 
         deckId = PutDeckFragmentArgs.fromBundle(getArguments()).getDeckId();
 

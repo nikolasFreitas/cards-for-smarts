@@ -13,7 +13,9 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="menu_deck">Decks</string>
+    <string name="menu_statistics">Estatística</string>
     <string name="menu_add_deck">Adicionar deck</string>
+    <string name="about_flash_cards_intent">O que são flashcards</string>
     <string name="warning_empty_deck">Ainda não existem decks no seu acervo</string>
     <string name="create_creative_deck">Seja criativo com o nome do baralho :D</string>
     <string name="label_create">Criar</string>

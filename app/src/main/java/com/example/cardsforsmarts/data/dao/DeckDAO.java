@@ -14,7 +14,7 @@ import java.util.List;
 
 @Dao
 public interface DeckDAO {
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.ABORT)
     public void insert(Deck card);
 
     @Query("SELECT * FROM deck")

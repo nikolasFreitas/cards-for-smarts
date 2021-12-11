@@ -1,5 +1,7 @@
 package com.example.cardsforsmarts.ui.home;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +17,10 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.cardsforsmarts.R;
 import com.example.cardsforsmarts.databinding.FragmentHomeBinding;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
+
+import java.time.Duration;
 
 public class HomeFragment extends Fragment {
 
@@ -25,7 +31,7 @@ public class HomeFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
-        String[] menuOptions = new String[]{"Decks", "Statistics"};
+        String[] menuOptions = new String[]{getString(R.string.menu_deck), getString(R.string.menu_statistics), getString(R.string.about_flash_cards_intent)};
         View root = binding.getRoot();
 
         ListView listView = root.findViewById(R.id.listView_menu);
@@ -36,8 +42,14 @@ public class HomeFragment extends Fragment {
 
         listView.setOnItemClickListener((AdapterView<?> parent, View view, int position, long id) -> {
             String menuItem = (String) parent.getItemAtPosition(position);
-            if (menuItem.equals("Decks")) {
+            if (menuItem.equals(getString(R.string.menu_deck))) {
                 navController.navigate(R.id.action_nav_home_to_deck);
+            } else if (menuItem.equals(getString(R.string.menu_statistics))) {
+                Snackbar.make(view, "Ainda não impolemenrtado", BaseTransientBottomBar.LENGTH_LONG).show();
+            } else if(menuItem.equals(getString(R.string.about_flash_cards_intent))) {
+                Uri flashCardsUri = Uri.parse("https://usm.maine.edu/agile/using-flashcards");
+                Intent intent = new Intent(Intent.ACTION_VIEW, flashCardsUri);
+                startActivity(intent);
             }
         });
 

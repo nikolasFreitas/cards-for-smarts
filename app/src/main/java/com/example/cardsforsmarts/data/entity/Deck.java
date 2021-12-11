@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey;
 
 @Entity
 public class Deck {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     public long deckId;
     public String name;
     @Nullable
