@@ -3,6 +3,8 @@ package com.example.cardsforsmarts.ui.cards;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,6 +28,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Card card = cardList.get(position);
+        holder.cardDescription.setText(card.description);
     }
 
     @Override
@@ -34,8 +37,15 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
     }
 
     public static class ViewHolder extends  RecyclerView.ViewHolder {
+        private TextView cardDescription;
+        private Button editCardButton;
+        private Button deleteCardButton;
+
         public ViewHolder(@NonNull AdapterCardBinding itemView) {
             super(itemView.getRoot());
+            cardDescription = itemView.textViewQuestionDescription;
+            editCardButton = itemView.buttonCardEdit;
+            deleteCardButton = itemView.buttonCardDelete;
         }
     }
 

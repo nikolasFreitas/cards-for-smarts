@@ -2,11 +2,13 @@ package com.example.cardsforsmarts.data.dao;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Transaction;
 
+import com.example.cardsforsmarts.data.entity.Card;
 import com.example.cardsforsmarts.data.entity.Deck;
 import com.example.cardsforsmarts.data.relation.DeckWithCards;
 
@@ -26,4 +28,7 @@ public interface DeckDAO {
 
     @Query("SELECT * FROM deck ORDER BY deckId DESC LIMIT 1")
     public LiveData<Deck> getLatestDeck();
+
+    @Delete
+    public void deleteDeck(Deck deck);
 }

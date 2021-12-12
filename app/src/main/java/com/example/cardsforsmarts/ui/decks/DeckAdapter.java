@@ -4,9 +4,12 @@ import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cardsforsmarts.data.entity.Deck;
@@ -17,6 +20,11 @@ import java.util.List;
 
 public class DeckAdapter extends RecyclerView.Adapter<DeckAdapter.ViewHolder> {
     private List<Deck> deckList = new ArrayList<>();
+    private DeckViewModel deckViewModel;
+
+    public DeckAdapter(DeckViewModel deckViewModel) {
+        this.deckViewModel = deckViewModel;
+    }
 
     @NonNull
     @Override
@@ -28,9 +36,17 @@ public class DeckAdapter extends RecyclerView.Adapter<DeckAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Deck deck = deckList.get(position);
-        TextView textView = holder.getTextViewDeckName();
+        configDeckNameView(holder.getTextViewDeckName(), deck.name);
 
-        configDeckNameView(textView, deck.name);
+        holder.editButton.setOnClickListener(v -> {
+            DeckFragmentDirections.ActionNavDeckToCardList actionToPutDeck = DeckFragmentDirections.actionNavDeckToCardList(deck.deckId);
+            Navigation.findNavController(v).navigate(actionToPutDeck);
+        });
+        holder.deleteButton.setOnClickListener(v -> {
+            deckViewModel.deleteDeck(deck);
+            this.notifyItemRemoved(position);
+        });
+
     }
 
     private void configDeckNameView(TextView textView, String deckName) {
@@ -44,16 +60,25 @@ public class DeckAdapter extends RecyclerView.Adapter<DeckAdapter.ViewHolder> {
     }
 
     public void setDeck(List<Deck> newDecks) {
-        deckList = newDecks;
+        deckList.clear();
+        deckList.addAll(newDecks);
+
+        this.notifyDataSetChanged();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView textViewDeckName;
+        private final Button editButton;
+        private  final Button deleteButton;
+        private final Button startStudy;
 
         public ViewHolder(AdapterDeckBinding binding) {
             super(binding.getRoot());
 
             textViewDeckName = binding.textViewDeckName;
+            editButton = binding.buttonDeckEdit;
+            deleteButton = binding.buttonDeckDelete;
+            startStudy = binding.buttonDeckStart;
         }
 
         public TextView getTextViewDeckName() {

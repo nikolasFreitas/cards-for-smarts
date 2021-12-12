@@ -4,6 +4,7 @@ import android.app.Application;
 
 import androidx.lifecycle.LiveData;
 
+import com.example.cardsforsmarts.data.dao.CardDAO;
 import com.example.cardsforsmarts.data.dao.DeckDAO;
 import com.example.cardsforsmarts.data.entity.Deck;
 import com.example.cardsforsmarts.data.roomDataBase.ApplicationRoomDatabase;
@@ -33,5 +34,9 @@ public class DeckRepository {
 
     public LiveData<Deck> getLatestDeck() {
         return latestDeck;
+    }
+
+    public void deleteDeck(Deck deck) {
+        ApplicationRoomDatabase.databaseDeckExecutor.execute(() -> deckDAO.deleteDeck(deck));
     }
 }

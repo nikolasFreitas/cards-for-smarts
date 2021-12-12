@@ -23,10 +23,7 @@ public class DeckFragment extends Fragment {
     private FragmentDeckBinding binding;
     private DeckViewModel deckViewModel;
     private int SPLASH_TIME_OUT = 1500;
-
-    public DeckFragment() {
-        // Required empty public constructor
-    }
+    private boolean splashRunning;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -43,11 +40,18 @@ public class DeckFragment extends Fragment {
     }
 
     private void setDeckDataObservable(DeckAdapter deckAdapter) {
-        deckViewModel.getAllDecks().observe(getActivity(), deckAdapter::setDeck);
+        deckViewModel.getAllDecks().observe(getActivity(),decks -> {
+            deckAdapter.setDeck(decks);
+            if (!splashRunning) {
+                updateUiByDeckQuantity(decks);
+            }
+        });
     }
 
     private void loadingHandler() {
+        splashRunning = true;
         new Handler().postDelayed(() -> {
+            splashRunning = false;
             binding.progressBarDeckLoading.setVisibility(View.GONE);
             updateUiByDeckQuantity(deckViewModel.getAllDecks().getValue());
         }, SPLASH_TIME_OUT);
@@ -56,6 +60,7 @@ public class DeckFragment extends Fragment {
     private void updateUiByDeckQuantity(List<Deck> decks) {
         if (decks == null || decks.isEmpty()) {
             binding.textViewEmptyMessage.setVisibility(View.VISIBLE);
+            binding.recyclerViewDeckList.setVisibility(View.GONE);
         } else {
             binding.recyclerViewDeckList.setVisibility(View.VISIBLE);
             binding.textViewEmptyMessage.setVisibility(View.GONE);
@@ -65,7 +70,7 @@ public class DeckFragment extends Fragment {
     private void initRecycleView() {
         RecyclerView recyclerView = binding.recyclerViewDeckList;
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        DeckAdapter deckAdapter = new DeckAdapter();
+        DeckAdapter deckAdapter = new DeckAdapter(deckViewModel);
 
         setDeckDataObservable(deckAdapter);
         recyclerView.setAdapter(deckAdapter);

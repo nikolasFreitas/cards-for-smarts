@@ -14,7 +14,7 @@ import com.example.cardsforsmarts.data.entity.Deck;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Deck.class, Card.class}, version = 1, exportSchema = false)
+@Database(entities = {Deck.class, Card.class}, version = 2, exportSchema = false)
 abstract public class ApplicationRoomDatabase extends RoomDatabase {
     public abstract DeckDAO deckDAO();
     public abstract CardDAO cardDAO();

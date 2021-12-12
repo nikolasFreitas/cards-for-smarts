@@ -23,6 +23,10 @@
         <action
             android:id="@+id/action_nav_deck_to_nav_add_deck"
             app:destination="@id/nav_put_deck" />
+        <action
+            android:id="@+id/action_nav_deck_to_cardList"
+            app:destination="@id/cardList" />
+
     </fragment>
 
     <fragment
@@ -46,7 +50,22 @@
         tools:layout="@layout/fragment_card_list">
         <argument
             android:name="deckId"
+            app:argType="long"/>
+        <action
+            android:id="@+id/action_cardList_to_putCard"
+            app:destination="@id/putCard" />
+    </fragment>
+    <fragment
+        android:id="@+id/putCard"
+        android:name="com.example.cardsforsmarts.ui.PutCard.PutCardFragment"
+        android:label="fragment_put_card"
+        tools:layout="@layout/fragment_put_card">
+        <argument
+            android:name="deckId"
+            app:argType="long"/>
+        <argument
+            android:name="cardId"
             app:argType="long"
-            android:defaultValue="-1L" />
+            android:defaultValue="-1L"/>
     </fragment>
 </navigation>
