@@ -106,8 +106,7 @@ public class PutDeckFragment extends Fragment {
                 .setTitle(prepareInsertedMessage(deck.name))
                 .setMessage("Deseja criar as cartas para este deck?")
                 .setPositiveButton("Criar", (dialog, which) -> {
-                    PutDeckFragmentDirections.ActionNavPutDeckToCardList actionToCardList = PutDeckFragmentDirections.actionNavPutDeckToCardList();
-                    actionToCardList.setDeckId(deck.deckId);
+                    PutDeckFragmentDirections.ActionNavPutDeckToCardList actionToCardList = PutDeckFragmentDirections.actionNavPutDeckToCardList(deck.deckId);
                     Navigation.findNavController(fragmentBinding.getRoot()).navigate(actionToCardList);
                 })
                 .setNegativeButton("Não", (dialog, which) -> {
