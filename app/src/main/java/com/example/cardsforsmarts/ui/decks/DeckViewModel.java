@@ -1,4 +1,4 @@
-package com.example.cardsforsmarts.ui.deck;
+package com.example.cardsforsmarts.ui.decks;
 
 import android.app.Application;
 
@@ -15,11 +15,13 @@ public class DeckViewModel extends AndroidViewModel {
 
     private final DeckRepository deckRepository;
     private final LiveData<List<Deck>> allDecks;
+    private final LiveData<Deck> latestDeck;
 
     public DeckViewModel(@NonNull Application application) {
         super(application);
         deckRepository = new DeckRepository(application);
         allDecks = deckRepository.getAllDecks();
+        latestDeck = deckRepository.getLatestDeck();
     }
 
 
@@ -30,4 +32,9 @@ public class DeckViewModel extends AndroidViewModel {
     public void insert(Deck deck) {
         deckRepository.insert(deck);
     }
+
+    public LiveData<Deck> getLatestDeck() {
+        return latestDeck;
+    }
+
 }

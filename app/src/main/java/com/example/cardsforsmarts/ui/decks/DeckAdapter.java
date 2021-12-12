@@ -1,8 +1,6 @@
-package com.example.cardsforsmarts.ui.deck;
+package com.example.cardsforsmarts.ui.decks;
 
 import android.graphics.Paint;
-import android.text.SpannableString;
-import android.text.style.UnderlineSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cardsforsmarts.data.entity.Deck;
-import com.example.cardsforsmarts.databinding.AdapterCardDeckBinding;
+import com.example.cardsforsmarts.databinding.AdapterDeckBinding;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,8 +21,7 @@ public class DeckAdapter extends RecyclerView.Adapter<DeckAdapter.ViewHolder> {
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        AdapterCardDeckBinding binding =  AdapterCardDeckBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
-        View view = binding.getRoot();
+        AdapterDeckBinding binding =  AdapterDeckBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
         return new ViewHolder(binding);
     }
 
@@ -53,7 +50,7 @@ public class DeckAdapter extends RecyclerView.Adapter<DeckAdapter.ViewHolder> {
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView textViewDeckName;
 
-        public ViewHolder(AdapterCardDeckBinding binding) {
+        public ViewHolder(AdapterDeckBinding binding) {
             super(binding.getRoot());
 
             textViewDeckName = binding.textViewDeckName;

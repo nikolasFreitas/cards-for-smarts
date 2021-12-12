@@ -10,7 +10,7 @@
     app:cardCornerRadius="12dp"
     app:cardElevation="8dp"
     app:contentPadding="8dp"
-    tools:context=".ui.deck.DeckAdapter">
+    tools:context=".ui.decks.DeckAdapter">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

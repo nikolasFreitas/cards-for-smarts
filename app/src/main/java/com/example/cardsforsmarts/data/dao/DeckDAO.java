@@ -23,4 +23,7 @@ public interface DeckDAO {
     @Transaction
     @Query("SELECT * FROM deck")
     public LiveData<List<DeckWithCards>> getDeckWithCards();
+
+    @Query("SELECT * FROM deck ORDER BY deckId DESC LIMIT 1")
+    public LiveData<Deck> getLatestDeck();
 }

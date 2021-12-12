@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.decks.DeckFragment">
-
+    tools:context=".ui.cards.CardListFragment">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -19,7 +18,7 @@
             android:layout_marginEnd="24dp"
             android:text="@string/warning_empty_deck"
             android:textSize="24sp"
-            android:visibility="invisible"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -27,8 +26,8 @@
             app:layout_constraintVertical_bias="0.25" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:visibility="invisible"
-            android:id="@+id/recyclerView_deck_list"
+            android:visibility="gone"
+            android:id="@+id/recyclerView_card_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -37,7 +36,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_add_deck"
+            android:id="@+id/fab_add_card"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
@@ -45,18 +44,18 @@
             android:clickable="true"
             android:src="@drawable/ic_button_add"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            android:contentDescription="@string/add_card_description"/>
 
         <ProgressBar
-            android:id="@+id/progressBar_deck_loading"
+            android:id="@+id/progressBar_card_loading"
             style="?android:attr/progressBarStyle"
             android:layout_width="84dp"
             android:layout_height="86dp"
-            app:layout_constraintBottom_toBottomOf="@+id/recyclerView_deck_list"
-            app:layout_constraintEnd_toEndOf="@+id/recyclerView_deck_list"
-            app:layout_constraintStart_toStartOf="@+id/recyclerView_deck_list"
-            app:layout_constraintTop_toTopOf="@+id/recyclerView_deck_list" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </FrameLayout>

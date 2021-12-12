@@ -1,23 +1,25 @@
-package com.example.cardsforsmarts.ui.deck.putDeck;
+package com.example.cardsforsmarts.ui.putDeck;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import com.example.cardsforsmarts.R;
 import com.example.cardsforsmarts.data.entity.Deck;
 import com.example.cardsforsmarts.databinding.FragmentPutDeckBinding;
-import com.example.cardsforsmarts.ui.deck.DeckViewModel;
+import com.example.cardsforsmarts.ui.decks.DeckViewModel;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -25,6 +27,8 @@ public class PutDeckFragment extends Fragment {
     private long deckId;
     private FragmentPutDeckBinding fragmentBinding;
     private DeckViewModel deckViewModel;
+    private boolean isFormSubmitted = false;
+    private FragmentActivity fragmentActivity;
 
     public PutDeckFragment() {
         // Required empty public constructor
@@ -39,12 +43,21 @@ public class PutDeckFragment extends Fragment {
 
         deckId = PutDeckFragmentArgs.fromBundle(getArguments()).getDeckId();
 
+        setLatestDeckObservable();
         configToolbarTitle();
         fragmentBinding
                 .buttonSubmitDeck
                 .setOnClickListener(submitDeck);
 
         return fragmentBinding.getRoot();
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof Activity) {
+            fragmentActivity = (FragmentActivity) context;
+        }
     }
 
     private void configToolbarTitle() {
@@ -74,16 +87,42 @@ public class PutDeckFragment extends Fragment {
             Deck deck = new Deck();
             deck.name = fragmentBinding.textInputLayoutDeckName.getEditText().getText().toString();
             deckViewModel.insert(deck);
-
-            Snackbar.make(fragmentBinding.getRoot(), prepareInsertedMessage(deck), BaseTransientBottomBar.LENGTH_SHORT).show();
-            Navigation.findNavController(e).popBackStack();
+            isFormSubmitted = true;
         }
     };
 
-    private String prepareInsertedMessage(Deck deck) {
+    private void setLatestDeckObservable() {
+        deckViewModel.getLatestDeck().observe(fragmentActivity, deck -> {
+            if (isFormSubmitted) {
+                showDialogToNavigateToCardFragment(deck);
+                isFormSubmitted = false;
+            }
+        });
+    }
+
+    private void showDialogToNavigateToCardFragment(Deck deck) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(fragmentActivity);
+        AlertDialog alertDialog = builder
+                .setTitle(prepareInsertedMessage(deck.name))
+                .setMessage("Deseja criar as cartas para este deck?")
+                .setPositiveButton("Criar", (dialog, which) -> {
+                    PutDeckFragmentDirections.ActionNavPutDeckToCardList actionToCardList = PutDeckFragmentDirections.actionNavPutDeckToCardList();
+                    actionToCardList.setDeckId(deck.deckId);
+                    Navigation.findNavController(fragmentBinding.getRoot()).navigate(actionToCardList);
+                })
+                .setNegativeButton("Não", (dialog, which) -> {
+                    Snackbar.make(fragmentBinding.getRoot(), prepareInsertedMessage(deck.name), BaseTransientBottomBar.LENGTH_SHORT).show();
+                    Navigation.findNavController(fragmentBinding.getRoot()).popBackStack();
+                })
+                .create();
+        alertDialog.show();
+
+    }
+
+    private String prepareInsertedMessage(String deckName) {
         return new StringBuilder("Deck").append(" \"")
-                .append(deck.name).append("\" ")
-                .append("edicionado com sucesso!")
+                .append(deckName).append("\" ")
+                .append("adicionado com sucesso!")
                 .toString();
 
     }

@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/nav_deck"
-        android:name="com.example.cardsforsmarts.ui.deck.DeckFragment"
+        android:name="com.example.cardsforsmarts.ui.decks.DeckFragment"
         android:label="@string/menu_deck"
         tools:layout="@layout/fragment_deck" >
         <action
@@ -27,10 +27,23 @@
 
     <fragment
         android:id="@+id/nav_put_deck"
-        android:name="com.example.cardsforsmarts.ui.deck.putDeck.PutDeckFragment"
+        android:name="com.example.cardsforsmarts.ui.putDeck.PutDeckFragment"
         android:label="@string/menu_add_deck"
         tools:layout="@layout/fragment_put_deck"
         >
+        <argument
+            android:name="deckId"
+            app:argType="long"
+            android:defaultValue="-1L" />
+        <action
+            android:id="@+id/action_nav_put_deck_to_cardList"
+            app:destination="@id/cardList" />
+    </fragment>
+    <fragment
+        android:id="@+id/cardList"
+        android:name="com.example.cardsforsmarts.ui.cards.CardListFragment"
+        android:label="@string/fragment_title_cards"
+        tools:layout="@layout/fragment_card_list">
         <argument
             android:name="deckId"
             app:argType="long"

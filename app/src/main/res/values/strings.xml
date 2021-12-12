@@ -15,6 +15,7 @@
     <string name="menu_deck">Decks</string>
     <string name="menu_statistics">Estatística</string>
     <string name="menu_add_deck">Adicionar deck</string>
+    <string name="fragment_title_cards">Cartas</string>
     <string name="about_flash_cards_intent">O que são flashcards</string>
     <string name="warning_empty_deck">Ainda não existem decks no seu acervo</string>
     <string name="create_creative_deck">Seja criativo com o nome do baralho :D</string>
@@ -27,4 +28,5 @@
     <string name="button_label_remove">Remover</string>
     <string name="button_label_start">começar</string>
     <string name="reference_title">Referência</string>
+    <string name="add_card_description">adicionar card</string>
 </resources>

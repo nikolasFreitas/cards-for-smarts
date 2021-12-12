@@ -1,4 +1,4 @@
-package com.example.cardsforsmarts.ui.deck;
+package com.example.cardsforsmarts.ui.decks;
 
 import android.os.Bundle;
 import android.os.Handler;
