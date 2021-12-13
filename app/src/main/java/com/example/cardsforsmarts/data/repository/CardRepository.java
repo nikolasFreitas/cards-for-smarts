@@ -33,6 +33,10 @@ public class CardRepository {
         return cardsLinkedByDeck;
     }
 
+    public void clearCardsLinkedByDeck() {
+        cardsLinkedByDeck = null;
+    }
+
     public void deleteCardsByDeckId(long deckId) {
         ApplicationRoomDatabase.databaseDeckExecutor.execute(() -> cardDAO.deleteCardsByDeckId(deckId));
     }

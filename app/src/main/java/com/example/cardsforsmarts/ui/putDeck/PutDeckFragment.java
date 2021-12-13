@@ -19,7 +19,7 @@ import androidx.navigation.Navigation;
 import com.example.cardsforsmarts.R;
 import com.example.cardsforsmarts.data.entity.Deck;
 import com.example.cardsforsmarts.databinding.FragmentPutDeckBinding;
-import com.example.cardsforsmarts.ui.decks.DeckViewModel;
+import com.example.cardsforsmarts.data.viewModel.DeckViewModel;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 

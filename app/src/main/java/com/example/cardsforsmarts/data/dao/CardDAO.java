@@ -22,7 +22,7 @@ public interface CardDAO {
     public LiveData<List<Card>> getAll();
 
     @Transaction
-    @Query("SELECT * FROM Card WHERE cardId = :deckId")
+    @Query("SELECT * FROM Card WHERE deckOwnerId = :deckId")
     public LiveData<List<Card>> getCardsByDeckId(long deckId);
 
     @Query("DELETE FROM Card WHERE deckOwnerId=:deckId")

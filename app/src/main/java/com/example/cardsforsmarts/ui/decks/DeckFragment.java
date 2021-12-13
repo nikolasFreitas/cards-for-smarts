@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cardsforsmarts.data.entity.Deck;
+import com.example.cardsforsmarts.data.viewModel.DeckViewModel;
 import com.example.cardsforsmarts.databinding.FragmentDeckBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 

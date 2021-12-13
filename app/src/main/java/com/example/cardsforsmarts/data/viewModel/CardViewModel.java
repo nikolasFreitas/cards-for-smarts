@@ -1,4 +1,4 @@
-package com.example.cardsforsmarts.ui.cards;
+package com.example.cardsforsmarts.data.viewModel;
 
 import android.app.Application;
 
@@ -26,5 +26,14 @@ public class CardViewModel extends AndroidViewModel {
 
     public LiveData<List<Card>> getCardsByDeckId(long deckId) {
         return  cardRepository.getCardsLinkedByDeck(deckId);
+    }
+
+    public void clearCardsLinkedByDeck() {
+        cardRepository.clearCardsLinkedByDeck();
+    }
+
+
+    public void insert(Card card) {
+        cardRepository.insert(card);
     }
 }

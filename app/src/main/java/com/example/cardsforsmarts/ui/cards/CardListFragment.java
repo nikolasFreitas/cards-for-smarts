@@ -17,8 +17,8 @@ import android.view.ViewGroup;
 
 import com.example.cardsforsmarts.R;
 import com.example.cardsforsmarts.data.entity.Card;
+import com.example.cardsforsmarts.data.viewModel.CardViewModel;
 import com.example.cardsforsmarts.databinding.FragmentCardListBinding;
-import com.example.cardsforsmarts.ui.decks.DeckFragmentDirections;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
@@ -35,7 +35,6 @@ public class CardListFragment extends Fragment {
         fragmentCardListBinding = FragmentCardListBinding.inflate(inflater, container, false);
         cardViewModel = new ViewModelProvider(getActivity()).get(CardViewModel.class);
         deckId = CardListFragmentArgs.fromBundle(getArguments()).getDeckId();
-        cardViewModel.getCardsByDeckId(deckId);
         configToolbarTitle();
         attachFabListener(fragmentCardListBinding.fabAddCard);
         initRecycleView();
@@ -46,6 +45,12 @@ public class CardListFragment extends Fragment {
 
     private void setCardByDeckObservable(CardAdapter cardAdapter) {
         cardViewModel.getCardsByDeckId(deckId).observe(getActivity(), cardAdapter::setCardList);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        cardViewModel.clearCardsLinkedByDeck();
     }
 
     private void startSpinnerProcess() {

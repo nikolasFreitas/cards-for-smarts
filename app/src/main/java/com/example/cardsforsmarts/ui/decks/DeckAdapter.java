@@ -2,17 +2,16 @@ package com.example.cardsforsmarts.ui.decks;
 
 import android.graphics.Paint;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cardsforsmarts.data.entity.Deck;
+import com.example.cardsforsmarts.data.viewModel.DeckViewModel;
 import com.example.cardsforsmarts.databinding.AdapterDeckBinding;
 
 import java.util.ArrayList;

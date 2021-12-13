@@ -1,4 +1,4 @@
-package com.example.cardsforsmarts.ui.decks;
+package com.example.cardsforsmarts.data.viewModel;
 
 import android.app.Application;
 

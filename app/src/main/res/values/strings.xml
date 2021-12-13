@@ -23,10 +23,19 @@
     <string name="hint_deck_name">Nome do baralho</string>
     <string name="toolBar_add_deck">Adicionar baralho</string>
     <string name="toolBar_edit_deck">Editar baralho</string>
+    <string name="toolBar_add_card">Adicionar carta</string>
+    <string name="toolBar_edit_card">Editar carta</string>
     <string name="title_deck_of_wisdom">Deck\nof Wisdom</string>
     <string name="button_label_edit">editar</string>
     <string name="button_label_remove">Remover</string>
     <string name="button_label_start">começar</string>
     <string name="reference_title">Referência</string>
     <string name="add_card_description">adicionar card</string>
+    <string name="label_card_description">Descrição</string>
+    <string name="link_to_card_reference">Site de referência</string>
+    <string name="create_card">Criar carta</string>
+    <string-array name="card_answer_options">
+        <item>verdadeiro</item>
+        <item>falso</item>
+    </string-array>
 </resources>
