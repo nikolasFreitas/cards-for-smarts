@@ -59,7 +59,7 @@ public class AppAboutDialogFragment extends DialogFragment {
         return adapterDialogIfrsBinding.getRoot();
     }
 
-    private View.OnClickListener onImgClick = v -> {
+    private final View.OnClickListener onImgClick = v -> {
         hasShowedTheImageClickDialog = true;
         Uri flashCardsUri = Uri.parse("https://www.poalab.net.br/");
         Intent intent = new Intent(Intent.ACTION_VIEW, flashCardsUri);
