@@ -34,6 +34,9 @@
     <string name="label_card_description">Descrição</string>
     <string name="link_to_card_reference">Site de referência</string>
     <string name="create_card">Criar carta</string>
+    <string name="action_about">sobre</string>
+    <string name="author_name">Nikolas Freitas</string>
+    <string name="class_name">Programação para web - III</string>
     <string-array name="card_answer_options">
         <item>verdadeiro</item>
         <item>falso</item>
