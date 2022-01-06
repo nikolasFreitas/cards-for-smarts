@@ -104,13 +104,13 @@ public class PutCardFragment extends Fragment {
             }
 
             cardViewModel.insert(card);
-            Snackbar.make(fragmentPutCardBinding.getRoot(), prepareInsertedMessage(), BaseTransientBottomBar.LENGTH_SHORT).show();
+            Snackbar.make(fragmentPutCardBinding.getRoot(), prepareInsertedMessage(), BaseTransientBottomBar.LENGTH_LONG).show();
             Navigation.findNavController(e).popBackStack();
         }
     };
 
     private String prepareInsertedMessage() {
-        return "Deck " +
+        return "Card " +
                 "adicionado com sucesso!";
 
     }
