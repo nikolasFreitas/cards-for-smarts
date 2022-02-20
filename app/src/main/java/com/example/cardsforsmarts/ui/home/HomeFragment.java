@@ -13,22 +13,26 @@ import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.cardsforsmarts.R;
 import com.example.cardsforsmarts.databinding.FragmentHomeBinding;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
-
-import java.time.Duration;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
     private NavController navController;
+    private FirebaseAuth mAuth;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+        mAuth = FirebaseAuth.getInstance();
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         String[] menuOptions = new String[]{getString(R.string.menu_deck), getString(R.string.menu_statistics), getString(R.string.about_flash_cards_intent)};
@@ -55,6 +59,21 @@ public class HomeFragment extends Fragment {
 
         return root;
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        loginUpdate(currentUser);
+    }
+
+    private void loginUpdate(FirebaseUser currentUser) {
+        if (currentUser == null) {
+            NavHostFragment.findNavController(this).popBackStack();
+        }
+    }
+
 
     @Override
     public void onDestroyView() {

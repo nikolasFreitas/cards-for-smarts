@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/splashFragment">
 
     <fragment
         android:id="@+id/nav_home"
@@ -41,7 +41,9 @@
             android:defaultValue="-1L" />
         <action
             android:id="@+id/action_nav_put_deck_to_cardList"
-            app:destination="@id/cardList" />
+            app:destination="@id/cardList"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/nav_deck" />
     </fragment>
     <fragment
         android:id="@+id/cardList"
@@ -67,5 +69,31 @@
             android:name="cardId"
             app:argType="long"
             android:defaultValue="-1L"/>
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.cardsforsmarts.ui.login.LoginFragment"
+        android:label="Login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.example.cardsforsmarts.ui.signUp.SignUpFragment"
+        android:label="Cadastro"
+        tools:layout="@layout/fragment_sign_up" />
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.example.cardsforsmarts.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_splashFragment_to_nav_home"
+            app:destination="@id/nav_home" />
+        <action
+            android:id="@+id/action_splashFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
 </navigation>

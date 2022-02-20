@@ -1,11 +1,9 @@
 package com.example.cardsforsmarts.ui.dialog;
 
-import android.animation.AnimatorSet;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,23 +22,12 @@ public class AppAboutDialogFragment extends DialogFragment {
     public static String TAG = "AppAboutDialogFragment";
     private static boolean hasShowedTheImageClickDialog = false;
     private AdapterDialogIfrsBinding adapterDialogIfrsBinding;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         adapterDialogIfrsBinding = AdapterDialogIfrsBinding.inflate(inflater, container, false);
-
-//      image config
-        adapterDialogIfrsBinding.imageViewIfrsLogo.setOnClickListener(onImgClick);
-
-        Animation imgAnimation = AnimationUtils.loadAnimation(getContext(), R.anim.shake_animation);
-        new Handler().postDelayed(() -> {
-            adapterDialogIfrsBinding
-                    .imageViewIfrsLogo
-                    .startAnimation(imgAnimation);
-
-        }, 500);
-
-
+        imageUiConfig();
 
         adapterDialogIfrsBinding.buttonDismiss.setOnClickListener(v -> {
             if (Boolean.FALSE.equals(hasShowedTheImageClickDialog)) {
@@ -57,6 +44,17 @@ public class AppAboutDialogFragment extends DialogFragment {
             }
         });
         return adapterDialogIfrsBinding.getRoot();
+    }
+
+    private void imageUiConfig() {
+        adapterDialogIfrsBinding.imageViewIfrsLogo.setOnClickListener(onImgClick);
+        Animation imgAnimation = AnimationUtils.loadAnimation(getContext(), R.anim.shake_animation);
+        new Handler().postDelayed(() -> {
+            adapterDialogIfrsBinding
+                    .imageViewIfrsLogo
+                    .startAnimation(imgAnimation);
+
+        }, 500);
     }
 
     private final View.OnClickListener onImgClick = v -> {

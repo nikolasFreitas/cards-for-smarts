@@ -9,7 +9,7 @@
     app:cardBackgroundColor="@color/primary_dark"
     app:cardCornerRadius="12dp"
     app:cardElevation="8dp"
-    app:contentPadding="8dp"
+    app:contentPadding="12dp"
     tools:context=".ui.decks.DeckAdapter">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -20,11 +20,14 @@
 
         <TextView
             android:id="@+id/textView_question_description"
-            android:layout_width="wrap_content"
-            android:layout_height="300dp"
+            android:layout_width="0dp"
+            android:layout_height="276dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="32dp"
             android:text="Power BI"
             android:textAlignment="center"
-            android:textColor="@color/secondary_dark"
+            android:textColor="@color/primary_dark"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -34,16 +37,15 @@
             android:id="@+id/button_card_edit"
             android:layout_width="164dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="64dp"
             android:layout_marginBottom="8dp"
             android:backgroundTint="@color/primary_dark"
             android:drawableLeft="@drawable/ic_button_edit"
             android:drawableTint="@color/white"
             android:text="@string/button_label_edit"
+            android:textColor="@color/primary_text"
             app:layout_constraintBottom_toTopOf="@+id/button_card_delete"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView_question_description" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/button_card_delete"
@@ -53,9 +55,25 @@
             android:drawableLeft="@android:drawable/ic_delete"
             android:drawableTint="@color/white"
             android:text="@string/button_label_remove"
+            android:textColor="@color/primary_text"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/textView_reference_link"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="Placeholder"
+            android:visibility="invisible"
+            android:textSize="18dp"
+            android:textColor="@color/secondary_text"
+            app:layout_constraintBottom_toTopOf="@+id/button_card_edit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_question_description" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

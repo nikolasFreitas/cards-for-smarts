@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
@@ -94,18 +95,19 @@ public class PutDeckFragment extends Fragment {
     private void setLatestDeckObservable() {
         deckViewModel.getLatestDeck().observe(fragmentActivity, deck -> {
             if (isFormSubmitted) {
-                showDialogToNavigateToCardFragment(deck);
+                showNavigateToCardFragmentDialog(deck);
                 isFormSubmitted = false;
             }
         });
     }
 
-    private void showDialogToNavigateToCardFragment(Deck deck) {
+    private void showNavigateToCardFragmentDialog(Deck deck) {
         AlertDialog.Builder builder = new AlertDialog.Builder(fragmentActivity);
         AlertDialog alertDialog = builder
                 .setTitle(prepareInsertedMessage(deck.name))
                 .setMessage("Deseja criar as cartas para este deck?")
                 .setPositiveButton("Criar", (dialog, which) -> {
+                    Snackbar.make(fragmentBinding.getRoot(), prepareInsertedMessage(deck.name), BaseTransientBottomBar.LENGTH_SHORT).show();
                     PutDeckFragmentDirections.ActionNavPutDeckToCardList actionToCardList = PutDeckFragmentDirections.actionNavPutDeckToCardList(deck.deckId);
                     Navigation.findNavController(fragmentBinding.getRoot()).navigate(actionToCardList);
                 })
@@ -114,6 +116,7 @@ public class PutDeckFragment extends Fragment {
                     Navigation.findNavController(fragmentBinding.getRoot()).popBackStack();
                 })
                 .create();
+
         alertDialog.show();
 
     }

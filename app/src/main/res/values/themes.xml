@@ -14,12 +14,20 @@
         <!-- Customize your theme here. -->
         <item name="android:textColor">@color/primary_text</item>
         <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:itemTextAppearance">@style/customIconMenuTextColor</item>
     </style>
 
     <style name="Theme.CardsForSmarts.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:windowBackground">@color/primary</item>
+        <item name="android:actionMenuTextColor">@color/white</item>
+    </style>
+    <style name="customIconMenuTextColor" parent="@android:style/TextAppearance.Widget.IconMenu.Item">
+        <item name="android:textColor">@color/secondary_text</item>
+    </style>
+    <style name="ButtonColor" parent="@android:style/Widget.Button">
+        <item name="android:textColor">@color/primary_text</item>
     </style>
 
     <style name="Theme.CardsForSmarts.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

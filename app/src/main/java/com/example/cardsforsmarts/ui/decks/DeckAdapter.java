@@ -28,7 +28,7 @@ public class DeckAdapter extends RecyclerView.Adapter<DeckAdapter.ViewHolder> {
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        AdapterDeckBinding binding =  AdapterDeckBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+        AdapterDeckBinding binding = AdapterDeckBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
         return new ViewHolder(binding);
     }
 
