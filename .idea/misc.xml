@@ -18,16 +18,20 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.35688405797101447" />
         <entry key="app/src/main/res/layout/adapter_card.xml" value="0.353713768115942" />
         <entry key="app/src/main/res/layout/adapter_card_deck.xml" value="0.3378623188405797" />
+        <entry key="app/src/main/res/layout/adapter_deck.xml" value="0.4970482213874982" />
         <entry key="app/src/main/res/layout/adapter_dialog_ifrs.xml" value="0.33" />
         <entry key="app/src/main/res/layout/app_bar_main.xml" value="0.35688405797101447" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.35688405797101447" />
         <entry key="app/src/main/res/layout/fragment_card_list.xml" value="0.19791666666666666" />
         <entry key="app/src/main/res/layout/fragment_deck.xml" value="0.34601449275362317" />
         <entry key="app/src/main/res/layout/fragment_gallery.xml" value="0.3432971014492754" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.35688405797101447" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.3222243965765141" />
+        <entry key="app/src/main/res/layout/fragment_login.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_put_card.xml" value="0.26785714285714285" />
         <entry key="app/src/main/res/layout/fragment_put_deck.xml" value="0.34193840579710144" />
+        <entry key="app/src/main/res/layout/fragment_sign_up.xml" value="0.2443981240229286" />
         <entry key="app/src/main/res/layout/fragment_slideshow.xml" value="0.34601449275362317" />
+        <entry key="app/src/main/res/layout/fragment_splash.xml" value="0.39440907923900975" />
         <entry key="app/src/main/res/layout/nav_header_main.xml" value="0.35688405797101447" />
         <entry key="app/src/main/res/menu/activity_main_drawer.xml" value="0.3692708333333333" />
         <entry key="app/src/main/res/menu/main.xml" value="0.35625" />

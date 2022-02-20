@@ -37,6 +37,7 @@
     <string name="action_about">sobre</string>
     <string name="author_name">Nikolas Freitas</string>
     <string name="class_name">Programação para web - III</string>
+    <string name="action_logout">logout</string>
     <string-array name="card_answer_options">
         <item>verdadeiro</item>
         <item>falso</item>

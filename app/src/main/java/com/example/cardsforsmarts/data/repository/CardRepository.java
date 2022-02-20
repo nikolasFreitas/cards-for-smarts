@@ -44,4 +44,12 @@ public class CardRepository {
     public void insert(Card card) {
         ApplicationRoomDatabase.databaseDeckExecutor.execute(() -> cardDAO.insert(card));
     }
+
+    public void update(Card card) {
+        ApplicationRoomDatabase.databaseDeckExecutor.execute(() -> cardDAO.update(card));
+    }
+
+    public LiveData<Card> getCardsLinkedById(long cardId) {
+        return cardDAO.getById(cardId);
+    }
 }

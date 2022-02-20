@@ -11,6 +11,16 @@
         <item name="colorOnSecondary">@color/secondary_text</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:actionMenuTextColor">@color/white</item>
         <!-- Customize your theme here. -->
+        <item name="android:itemTextAppearance">@style/customIconMenuTextColor</item>
+        <item name="android:textAppearanceButton">@style/TextAppearance.AppCompat.Button.Custom</item>
+    </style>
+
+    <style name="customIconMenuTextColor" parent="@android:style/TextAppearance.Widget.IconMenu.Item">
+        <item name="android:textColor">@color/primary_text</item>
+    </style>
+    <style name="TextAppearance.AppCompat.Button.Custom" parent="@android:style/Widget.Button">
+        <item name="android:textColor">@color/primary_text</item>
     </style>
 </resources>

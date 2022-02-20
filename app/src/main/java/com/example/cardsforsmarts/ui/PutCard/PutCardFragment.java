@@ -8,30 +8,20 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.textclassifier.SelectionEvent;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.example.cardsforsmarts.R;
 import com.example.cardsforsmarts.data.entity.Card;
 import com.example.cardsforsmarts.data.entity.CardAnswer;
-import com.example.cardsforsmarts.data.entity.Deck;
 import com.example.cardsforsmarts.data.viewModel.CardViewModel;
-import com.example.cardsforsmarts.data.viewModel.DeckViewModel;
 import com.example.cardsforsmarts.databinding.FragmentPutCardBinding;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 
 public class PutCardFragment extends Fragment {
@@ -51,21 +41,47 @@ public class PutCardFragment extends Fragment {
 
         cardViewModel = new ViewModelProvider(requireActivity()).get(CardViewModel.class);
 
-        configToolbarTitle();
+        setUiMode();
         configDropdownUi();
+        setCardByDeckObservable();
         fragmentPutCardBinding.buttonSubmitCard.setOnClickListener(submitDeck);
         return fragmentPutCardBinding.getRoot();
     }
 
-    private void configToolbarTitle() {
+    private void setUiMode() {
         String titleName;
-        if (cardId < 0) {
+        String buttonText;
+        if (isCreationMode()) {
             titleName = getString(R.string.toolBar_add_card);
+            buttonText = "Criar carta";
         } else {
             titleName = getString(R.string.toolBar_edit_card);
+            buttonText = getString(R.string.toolBar_edit_card);
         }
 
         ((AppCompatActivity) requireActivity()).getSupportActionBar().setTitle(titleName);
+        fragmentPutCardBinding.buttonSubmitCard.setText(buttonText);
+    }
+
+    private void setCardByDeckObservable() {
+        if (isCreationMode()) {
+            return;
+        }
+        cardViewModel.getCardsByCardId(cardId).observe(getActivity(), this::fillFormItems);
+    }
+
+    private void fillFormItems(Card card) {
+        if (card == null) {
+            return;
+        }
+        fragmentPutCardBinding.TextInputLayoutCardDescription.getEditText().setText(card.description);
+        fragmentPutCardBinding.textInputLayoutCardReference.getEditText().setText(card.reference);
+
+        int spinnerSelectedPos = FALSE_OPTION_INDEX;
+        if (card.cardAnswer.equals(CardAnswer.YES)) {
+            spinnerSelectedPos = TRUE_OPTION_INDEX;
+        }
+        fragmentPutCardBinding.spinnerCardAnswer.setSelection(spinnerSelectedPos);
     }
 
     private void configDropdownUi() {
@@ -94,7 +110,8 @@ public class PutCardFragment extends Fragment {
         if (isFormValid()) {
             Card card = new Card();
             card.deckOwnerId = deckId;
-            card.description = fragmentPutCardBinding.textViewCardDescription.getText().toString();
+            card.description = fragmentPutCardBinding.TextInputLayoutCardDescription.getEditText().getText().toString();
+            card.reference = fragmentPutCardBinding.textInputLayoutCardReference.getEditText().getText().toString();
             String cardSpinnerAnswer = fragmentPutCardBinding.spinnerCardAnswer.getSelectedItem().toString();
             String trueCardAnswerOption = getResources().getStringArray(R.array.card_answer_options)[TRUE_OPTION_INDEX];
             if (cardSpinnerAnswer.equals(trueCardAnswerOption)) {
@@ -103,15 +120,29 @@ public class PutCardFragment extends Fragment {
                 card.cardAnswer = CardAnswer.NO;
             }
 
-            cardViewModel.insert(card);
+            if(isCreationMode()) {
+                cardViewModel.insert(card);
+            } else {
+                card.cardId = cardId;
+                cardViewModel.update(card);
+            }
+
             Snackbar.make(fragmentPutCardBinding.getRoot(), prepareInsertedMessage(), BaseTransientBottomBar.LENGTH_LONG).show();
             Navigation.findNavController(e).popBackStack();
         }
     };
 
-    private String prepareInsertedMessage() {
-        return "Card " +
-                "adicionado com sucesso!";
+    private boolean isCreationMode() {
+        return cardId < 0;
+    }
 
+    private String prepareInsertedMessage() {
+        if (isCreationMode()) {
+            return "Card " +
+                    "adicionado com sucesso!";
+        }
+
+        return  "Card" +
+                "EDITADO com sucesso";
     }
 }

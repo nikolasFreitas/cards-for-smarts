@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.cardsforsmarts.R;
@@ -44,7 +45,20 @@ public class LoginFragment extends Fragment {
         });
 
         fragmentPutCardBinding.buttonSubmitLogin.setOnClickListener(view -> {
-            signIn("nikolas.freitas@sap.com", "123");
+            if(isFormValid()) {
+                signIn(
+                        fragmentPutCardBinding
+                                .textInputLayoutAccount
+                                .getEditText()
+                                .getText()
+                                .toString(),
+                        fragmentPutCardBinding
+                                .textInputLayoutPassword
+                                .getEditText()
+                                .getText()
+                                .toString());
+
+            }
         });
         return fragmentPutCardBinding.getRoot();
     }
@@ -61,7 +75,25 @@ public class LoginFragment extends Fragment {
         ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
     }
 
+    private boolean isFormValid() {
+        EditText editAccount = fragmentPutCardBinding.textInputLayoutAccount.getEditText();
+        EditText editPassword = fragmentPutCardBinding.textInputLayoutPassword.getEditText();
+
+        if (editPassword.getText().toString().isEmpty()) {
+            editPassword.setError("Campo não pode estar vazio");
+            return false;
+        }
+
+        if(editAccount.getText().toString().isEmpty()) {
+            editAccount.setError("Campo não pode estar vazio");
+            return false;
+        }
+
+        return true;
+    }
+
     public void signIn(String email, String password) {
+        Log.d(TAG, "E-mail do meliante " + email);
         firebaseAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
                     @Override
@@ -69,8 +101,7 @@ public class LoginFragment extends Fragment {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
-                            FirebaseUser user = firebaseAuth.getCurrentUser();
-//                            updateUI(user);
+                            NavHostFragment.findNavController(LoginFragment.this).popBackStack();
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());

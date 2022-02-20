@@ -70,8 +70,7 @@ public class HomeFragment extends Fragment {
 
     private void loginUpdate(FirebaseUser currentUser) {
         if (currentUser == null) {
-            NavDirections action = HomeFragmentDirections.actionNavHomeToLoginFragment();
-            NavHostFragment.findNavController(this).navigate(action);
+            NavHostFragment.findNavController(this).popBackStack();
         }
     }
 

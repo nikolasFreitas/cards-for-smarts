@@ -7,6 +7,7 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Transaction;
+import androidx.room.Update;
 
 import com.example.cardsforsmarts.data.entity.Card;
 
@@ -27,4 +28,10 @@ public interface CardDAO {
 
     @Query("DELETE FROM Card WHERE deckOwnerId=:deckId")
     public void deleteCardsByDeckId(long deckId);
+
+    @Update
+    void update(Card card);
+
+    @Query("SELECT * FROM Card WHERE cardId = :cardId LIMIT 1")
+    LiveData<Card> getById(long cardId);
 }

@@ -67,6 +67,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="textWebEditText"
                 android:hint="@string/link_to_card_reference" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -74,7 +75,10 @@
             android:id="@+id/button_submit_card"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@color/secondary"
+            android:backgroundTint="@color/secondary"
             android:text="@string/create_card"
+            android:textColor="@color/primary_text"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
